@@ -1,0 +1,50 @@
+<html>
+    <head>
+        <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+        <meta charset="utf-8" />
+        <title>JavaScript Sample Runner</title>
+        
+        <script type="text/javascript" charset="utf-8" src="bower_components/jquery/dist/jquery.js"></script>
+        <script type="text/javascript" charset="utf-8" src="bower_components/mojio-js/dist/browser/MojioClient.js"></script>
+        <script type="text/javascript" charset="utf-8" src="bower_components/mojio-js/dist/browser/User.js"></script>
+        <script type="text/javascript" charset="utf-8" src="bower_components/mojio-js/dist/browser/App.js"></script>
+        
+        <script type="text/javascript">
+            function display(obj)
+            {
+                var obj = document.getElementById("htmlCode").value;
+                var iframe = document.getElementById("result");
+                var doc = iframe.contentDocument || iframe.contentWindow.document;
+                var html = '<body>' + obj + '</body>';
+                
+                doc.open();
+                doc.writeln(html);
+                doc.close();
+                
+            }
+        </script>
+    </head>
+    <body>
+        <table width="100%" height="100%" border="0">
+            <thead> 
+                <tr height="30px">
+                    <th width="50%">
+                        <button onclick="display()">Write your code and click me</button>
+                    </th>
+                    <th>Result</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr height="*">
+                    <td width="50%" valign="top">
+                            <textarea cols="115" rows="50" id="htmlCode"></textarea>
+                    </td>
+                    <td width="50%" valign="top">
+                        <iframe id="result" frameborder="1" width="100%" height="100%">
+                        </iframe>
+                    </td>
+                </tr>
+            </tbody>        
+        </table>
+    </body>
+</html>

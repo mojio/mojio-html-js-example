@@ -1,0 +1,128 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <meta charset="utf-8" />
+    <title>JavaScript Sample Runner</title>
+    
+    <script type="text/javascript" charset="utf-8" src="bower_components/jquery/dist/jquery.js"></script>
+    <script type="text/javascript" charset="utf-8" src="bower_components/mojio-js/dist/browser/MojioClient.js"></script>
+	<script type="text/javascript" charset="utf-8" src="bower_components/mojio-js/dist/browser/User.js"></script>
+	<script type="text/javascript" charset="utf-8" src="bower_components/mojio-js/dist/browser/App.js"></script>
+    
+    <script type="text/javascript">
+        var iframe;
+    
+        function init() {
+            //console.log("window in init():");
+            //console.log(window);
+            iframe = document.getElementById("resultFrame");
+            var html = '<body>' + '<div id="result">' + 
+            'v0.1 - Enter code in the above textarea and press \"Run\".' + '<\/div>' + '<\/body>';
+            //window.outputFrame.document.open();
+            //window.outputFrame.document.write(html);
+            //window.outputFrame.document.close();
+            
+            iframe.contentWindow.document.open();
+            iframe.contentWindow.document.write(html);
+            iframe.contentWindow.document.close();
+
+        }
+        
+        function RunCode() {
+            var code = document.getElementById("input_area").value;
+            //updateResult(code);
+            var codefunc = "function internelFunc(display) {" + code + "}";
+            eval(codefunc);
+            internelFunc(function(returnValue) { updateResult(returnValue); });
+        }
+        
+        function updateResult(returnValue) {
+            if (returnValue && typeof returnValue == "string") {
+                var doc = iframe.contentDocument || iframe.contentWindow.document;
+                //var iframe = document.getElementById("resultFrame");
+                var html = '<body>' + returnValue + '</body>';
+                doc.open();
+                doc.write(html);
+                doc.close();
+                //iframe.contentWindow.document.open();
+                //iframe.contentWindow.document.write(html);
+                //iframe.contentWindow.document.close();
+            }
+        }
+        
+        window.onload = init;
+    </script>
+</head>
+
+<body>
+    <header>
+        <h1>Try your Javascript Client online</h1>
+    </header>
+    
+    <section>
+    <div id="content">
+    <div id="sourceCode">
+        <div class="titleText">Source Code:</div>
+        <textarea id="input_area" class="code_input" wrap="logical" rows="20" cols="126" tabindex="0">var App, MojioClient, config, mojio_client;
+MojioClient = this.MojioClient;
+App = this.App;
+
+config = {
+        application: '9ea750d2-7085-4125-bcd8-5e6d05d1d695',
+        secret: 'e464f45a-e877-4655-b119-f7c58c10549f',
+        hostname: 'develop.api.moj.io',
+        version: 'v1',
+        port: '80'
+        };
+        
+mojio_client = new MojioClient(config);
+
+mojio_client.login('anonymous@moj.io', 'Password007', function(error, result) {
+    var str = "";
+    if (error) {
+      return alert("Login Error: " + error);
+    } else {
+        var app_modify;
+        str += 'POST /login<br>';
+        str += JSON.stringify(result);
+        display(str);
+
+        mojio_client.query(App, {}, function(error, result) {
+            var app;
+            if (error) {
+              return display(str += 'Get Apps Error' + error + '<br>');
+            } else {
+                if (result instanceof Array) {
+                    app = new App(result[0]);
+                } else if (result.Data instanceof Array) {
+                    app = new App(result.Data[0]);
+                } else if ((result.Data != null)) {
+                    app = new App(result.Data);
+                } else {
+                    app = new App(result);
+                }
+                str += '<br>Get /App<br>';
+                str += JSON.stringify(result);
+                display(str);
+                
+                str += '<p>' + 'App Name: ' + app.Name + '</p>'
+                display(str);
+                
+            }
+        });
+
+    }
+});</textarea>
+    </div>
+    
+    <div id="result">
+        <div class="titleText">Result:</div>
+        <iframe id="resultFrame" name="outputFrame" width="1024" height="450" src=""></iframe>
+    </div>
+    
+    <p><button type="button" onclick="RunCode()">Run</button></p>
+    </div>
+    </section>
+</body>
+</html>
