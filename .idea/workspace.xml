@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5cc6d183-27bd-4423-a60e-3be05d1e6917" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testcode.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/test.html" afterPath="$PROJECT_DIR$/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test.html" afterPath="$PROJECT_DIR$/test.html" />
-    </list>
+    <list default="true" id="5cc6d183-27bd-4423-a60e-3be05d1e6917" name="Default" comment="" />
     <ignored path="mojio-html-js-example.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -29,10 +23,19 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="index.html" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="88" column="3" selection-start="3127" selection-end="3127" vertical-scroll-proportion="0.96309966" vertical-offset="537" max-vertical-offset="2433">
+            <state line="88" column="3" selection-start="3127" selection-end="3127" vertical-scroll-proportion="-32.625" vertical-offset="537" max-vertical-offset="2433">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="bower.json" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/bower.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="963">
               <folding />
             </state>
           </provider>
@@ -293,7 +296,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="88" column="3" selection-start="3127" selection-end="3127" vertical-scroll-proportion="0.96309966" vertical-offset="537" max-vertical-offset="2433">
+        <state line="88" column="3" selection-start="3127" selection-end="3127" vertical-scroll-proportion="-32.625" vertical-offset="537" max-vertical-offset="2433">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bower.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="987">
           <folding />
         </state>
       </provider>
