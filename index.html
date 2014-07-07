@@ -8,22 +8,61 @@
         <script type="text/javascript" charset="utf-8" src="bower_components/mojio-js/dist/browser/MojioClient.js"></script>
         <script type="text/javascript" charset="utf-8" src="bower_components/mojio-js/dist/browser/User.js"></script>
         <script type="text/javascript" charset="utf-8" src="bower_components/mojio-js/dist/browser/App.js"></script>
+        <script type="text/javascript" charset="utf-8" src="bower_components/mojio-js/dist/browser/Event.js"></script>
+        <script type="text/javascript" charset="utf-8" src="bower_components/mojio-js/dist/browser/Location.js"></script>
+        <script type="text/javascript" charset="utf-8" src="bower_components/mojio-js/dist/browser/Mojio.js"></script>
+        <script type="text/javascript" charset="utf-8" src="bower_components/mojio-js/dist/browser/Observer.js"></script>
+        <script type="text/javascript" charset="utf-8" src="bower_components/mojio-js/dist/browser/Product.js"></script>
+        <script type="text/javascript" charset="utf-8" src="bower_components/mojio-js/dist/browser/Subscription.js"></script>
+        <script type="text/javascript" charset="utf-8" src="bower_components/mojio-js/dist/browser/Trip.js"></script>
+        <script type="text/javascript" charset="utf-8" src="bower_components/mojio-js/dist/browser/Vehicle.js"></script>
         
         <script type="text/javascript">
-            function insert_code(obj)
-            {
-                var obj = "<style>" + $( "#userCSS" ).val() + "<\/style>";
-                obj += $( "#userHtml" ).val();
-                obj += "<script>" + $( "#userCode" ).val() + "<\/script>";
-                var target = $("#runningArea").html(obj);
+            var scripts = '<script type="text/javascript" charset="utf-8" src="bower_components/jquery/dist/jquery.js"><\/script>' +
+            '<script type="text/javascript" charset="utf-8" src="bower_components/mojio-js/dist/browser/MojioClient.js"><\/script>' +
+            '<script type="text/javascript" charset="utf-8" src="bower_components/mojio-js/dist/browser/User.js"><\/script>' +
+            '<script type="text/javascript" charset="utf-8" src="bower_components/mojio-js/dist/browser/App.js"><\/script>' +
+            '<script type="text/javascript" charset="utf-8" src="bower_components/mojio-js/dist/browser/Event.js"><\/script>' +
+            '<script type="text/javascript" charset="utf-8" src="bower_components/mojio-js/dist/browser/Location.js"><\/script>' +
+            '<script type="text/javascript" charset="utf-8" src="bower_components/mojio-js/dist/browser/Mojio.js"><\/script>' +
+            '<script type="text/javascript" charset="utf-8" src="bower_components/mojio-js/dist/browser/Observer.js"><\/script>' +
+            '<script type="text/javascript" charset="utf-8" src="bower_components/mojio-js/dist/browser/Product.js"><\/script>' +
+            '<script type="text/javascript" charset="utf-8" src="bower_components/mojio-js/dist/browser/Subscription.js"><\/script>' +
+            '<script type="text/javascript" charset="utf-8" src="bower_components/mojio-js/dist/browser/Trip.js"><\/script>' +
+            '<script type="text/javascript" charset="utf-8" src="bower_components/mojio-js/dist/browser/Vehicle.js"><\/script>';
+            
+            function init() {
+                var iframe = document.getElementById("runningArea");
+                var doc = iframe.contentDocument || iframe.contentWindow.document;
+                var html = 'Write you code in the textarea and run the code to see the result here.';
+                
+                doc.open();
+                doc.write(html);
+                doc.close();
             }
+            
+            function insert_code(obj) {               
+                var obj = '<style>' + document.getElementById("userCSS").value + '<\/style>';
+                obj += document.getElementById("userHtml").value;
+                obj += '<script>' + document.getElementById("userCode").value + '<\/script>';
+                
+                var iframe = document.getElementById("runningArea");
+                var doc = iframe.contentDocument || iframe.contentWindow.document;
+                var html = '<head>' + scripts + '<\/head>' + '<body>' + obj + '<\/body>';
+                
+                doc.open();
+                doc.writeln(html);
+                doc.close();
+            }
+            
+            window.onload = init;
         </script>
     </head>
     <body>
         <table width="100%" height="100%" border="0">
             <thead> 
                 <tr height="30px">
-                    <th width="50%">
+                    <th width="40%">
                         <button onclick="insert_code()">Write your code and click me</button>
                     </th>
                     <th>Result</th>
@@ -31,7 +70,7 @@
             </thead>
             <tbody>
                 <tr height="*">
-                    <td width="50%" valign="top">
+                    <td width="40%" valign="top">
                         <textarea cols="115" rows="50" id="userCode" placeholder="js">
 var App, MojioClient, config, mojio_client;
 MojioClient = this.MojioClient;
@@ -81,27 +120,20 @@ mojio_client.login('anonymous@moj.io', 'Password007', function(error, result) {
 
                 str += '<p>' + 'hello Name: ' + app.Name + '</p>'
                 display(str);
-
             }
         });
-
     }
-});
-                        </textarea>
+});</textarea>
                         <textarea cols="115" rows="20" id="userHtml" placeholder="html">
 <div id="output">
-
-</div>
-                        </textarea>
+</div></textarea>
                         <textarea cols="115" rows="20" id="userCSS" placeholder="css">
 body {
     background-color: #d0e4fe;
-}
-                        </textarea>
+}</textarea>
                     </td>
-                    <td width="50%" valign="top">
-                        <div id="runningArea" frameborder="1" width="100%" height="100%">
-                        </div>
+                    <td width="40%" valign="top">
+                        <iframe id="runningArea" frameborder="1" width="100%" height="100%" sandbox="allow-same-origin allow-scripts"></iframe>
                     </td>
                 </tr>
             </tbody>        
