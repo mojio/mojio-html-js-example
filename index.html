@@ -8,17 +8,33 @@
         <script type="text/javascript" charset="utf-8" src="bower_components/mojio-js/dist/browser/MojioClient.js"></script>
         <script type="text/javascript" charset="utf-8" src="bower_components/mojio-js/dist/browser/User.js"></script>
         <script type="text/javascript" charset="utf-8" src="bower_components/mojio-js/dist/browser/App.js"></script>
+        <script type="text/javascript" charset="utf-8" src="bower_components/mojio-js/dist/browser/Event.js"></script>
+        <script type="text/javascript" charset="utf-8" src="bower_components/mojio-js/dist/browser/Location.js"></script>
+        <script type="text/javascript" charset="utf-8" src="bower_components/mojio-js/dist/browser/Mojio.js"></script>
+        <script type="text/javascript" charset="utf-8" src="bower_components/mojio-js/dist/browser/Observer.js"></script>
+        <script type="text/javascript" charset="utf-8" src="bower_components/mojio-js/dist/browser/Product.js"></script>
+        <script type="text/javascript" charset="utf-8" src="bower_components/mojio-js/dist/browser/Subscription.js"></script>
+        <script type="text/javascript" charset="utf-8" src="bower_components/mojio-js/dist/browser/Trip.js"></script>
+        <script type="text/javascript" charset="utf-8" src="bower_components/mojio-js/dist/browser/Vehicle.js"></script>
         
         <script type="text/javascript">
             var scripts = '<script type="text/javascript" charset="utf-8" src="bower_components/jquery/dist/jquery.js"><\/script>' +
             '<script type="text/javascript" charset="utf-8" src="bower_components/mojio-js/dist/browser/MojioClient.js"><\/script>' +
             '<script type="text/javascript" charset="utf-8" src="bower_components/mojio-js/dist/browser/User.js"><\/script>' +
-            '<script type="text/javascript" charset="utf-8" src="bower_components/mojio-js/dist/browser/App.js"><\/script>';
+            '<script type="text/javascript" charset="utf-8" src="bower_components/mojio-js/dist/browser/App.js"><\/script>' +
+            '<script type="text/javascript" charset="utf-8" src="bower_components/mojio-js/dist/browser/Event.js"><\/script>' +
+            '<script type="text/javascript" charset="utf-8" src="bower_components/mojio-js/dist/browser/Location.js"><\/script>' +
+            '<script type="text/javascript" charset="utf-8" src="bower_components/mojio-js/dist/browser/Mojio.js"><\/script>' +
+            '<script type="text/javascript" charset="utf-8" src="bower_components/mojio-js/dist/browser/Observer.js"><\/script>' +
+            '<script type="text/javascript" charset="utf-8" src="bower_components/mojio-js/dist/browser/Product.js"><\/script>' +
+            '<script type="text/javascript" charset="utf-8" src="bower_components/mojio-js/dist/browser/Subscription.js"><\/script>' +
+            '<script type="text/javascript" charset="utf-8" src="bower_components/mojio-js/dist/browser/Trip.js"><\/script>' +
+            '<script type="text/javascript" charset="utf-8" src="bower_components/mojio-js/dist/browser/Vehicle.js"><\/script>';
             
             function init() {
                 var iframe = document.getElementById("runningArea");
                 var doc = iframe.contentDocument || iframe.contentWindow.document;
-                var html = '<body>' + 'Enter code in the textarea and run the code to see the result here.' + '<\/body>';
+                var html = 'Write you code in the textarea and run the code to see the result here.';
                 
                 doc.open();
                 doc.write(html);
@@ -104,23 +120,20 @@ mojio_client.login('anonymous@moj.io', 'Password007', function(error, result) {
 
                 str += '<p>' + 'hello Name: ' + app.Name + '</p>'
                 display(str);
-
             }
         });
-
     }
 });</textarea>
                         <textarea cols="115" rows="20" id="userHtml" placeholder="html">
 <div id="output">
-</div>
-                        </textarea>
+</div></textarea>
                         <textarea cols="115" rows="20" id="userCSS" placeholder="css">
 body {
     background-color: #d0e4fe;
 }</textarea>
                     </td>
                     <td width="40%" valign="top">
-                        <iframe id="runningArea" frameborder="1" width="100%" height="100%"></iframe>
+                        <iframe id="runningArea" frameborder="1" width="100%" height="100%" sandbox="allow-same-origin allow-scripts"></iframe>
                     </td>
                 </tr>
             </tbody>        
