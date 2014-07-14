@@ -63,33 +63,62 @@ config = {
     port: '80'
 };
 
-mojio_client = new MojioClient(config);
-
 var username, pwd, isLogin = false;
 
 function login() {
-  if (!isLogin) {
-    if (document.getElementById("username").value != null) {
-        username = document.getElementById("username").value;
-    }
-    if (document.getElementById("pw").value != null) {
-        pwd = document.getElementById("pw").value;
-    }
-    mojio_client.login(username, pwd, function(error, result) {
-        var str = "";
-        if (error) {
-            $("#loginResult").html("Login error: " + error);
-        } else {
-            isLogin = true;
-            str += 'POST /login<br>';
-            str += JSON.stringify(result);
-            $("#loginResult").html(str);
+    if (isLogin) {
+        $("#loginResult").html("You are logged in in as " + username);
+    } else {
+        if (document.getElementById("username").value != null) {
+            username = document.getElementById("username").value;
         }
-    });
-  }
+        if (document.getElementById("pw").value != null) {
+            pwd = document.getElementById("pw").value;
+        }
+        mojio_client = new MojioClient(config);
+        mojio_client.login(username, pwd, function(error, result) {
+            var str = "";
+            if (error) {
+                $("#loginResult").html("Login error: " + error);
+            } else {
+                isLogin = true;
+                str += 'POST /login<br>';
+                str += JSON.stringify(result);
+                $("#loginResult").html(str);
+            }
+        });
+    }
 }
 
 function loginApp() {
+    if (isLogin) {
+        $("#loginAppResult").html("You are logged in in as " + username);
+    } else {
+        if (document.getElementById("username2").value != null) {
+            username = document.getElementById("username2").value;
+        }
+        if (document.getElementById("pw2").value != null) {
+            pwd = document.getElementById("pw2").value;
+        }
+        if (document.getElementById("appId").value != null) {
+            config.application = document.getElementById("appId").value;
+        }
+        if (document.getElementById("secret").value != null) {
+            config.secret = document.getElementById("secret").value;
+        }
+        mojio_client = new MojioClient(config);
+        mojio_client.login(username, pwd, function(error, result) {
+            var str = "";
+            if (error) {
+                $("#loginResult").html("Login error: " + error);
+            } else {
+                isLogin = true;
+                str += 'POST /login<br>';
+                str += JSON.stringify(result);
+                $("#loginAppResult").html(str);
+            }
+        });
+    }
 }</textarea>
                         <textarea cols="100" rows="20" id="userHtml" placeholder="html">
 <form>
@@ -98,23 +127,20 @@ Password: <input type="password" id="pw" value="Password007" size="40">
 <p><input type="button" value="Login" onclick="login()"></p>
 </form> 
 
-<div id="loginResult">
-</div>
+<div id="loginResult"></div>
 </br>
 <hr>
 
 <form>
-Username: <input type="text" id="username" value="anonymous@moj.io" size="40"><br>
-Password: <input type="password" id="pw" value="Password007" size="40"><br>
-Application: <input type="text" id="app" value="9ea750d2-7085-4125-bcd8-5e6d05d1d695" size="60"><br>
+Username: <input type="text" id="username2" value="anonymous@moj.io" size="40"><br>
+Password: <input type="password" id="pw2" value="Password007" size="40"><br>
+Application: <input type="text" id="appId" value="9ea750d2-7085-4125-bcd8-5e6d05d1d695" size="60"><br>
 Secret: <input type="text" id="secret" value="e464f45a-e877-4655-b119-f7c58c10549f" size="60"><br>
 <p><input type="button" value="Login" onclick="loginApp()"></p>
 </form> 
 
 <div id="loginAppResult">
-</div>
-</br>
-</textarea>
+</div></textarea>
                         <textarea cols="100" rows="20" id="userCSS" placeholder="css">
 body {
     background-color: #d0e4fe;
