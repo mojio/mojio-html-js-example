@@ -56,9 +56,9 @@ var MojioClient, config, mojio_client;
 MojioClient = this.MojioClient;
 
 config = {
-    application: '9ea750d2-7085-4125-bcd8-5e6d05d1d695',
-    secret: 'e464f45a-e877-4655-b119-f7c58c10549f',
-    hostname: 'develop.api.moj.io',
+    application: 'e626b252-5e1f-48c6-a56c-54832e655c46',
+    secret: '295869cf-c4ae-439b-ba9e-a0fd1423ac0a',     //live
+    hostname: 'staging.api.moj.io',
     version: 'v1',
     port: '80'
 };
@@ -67,7 +67,7 @@ var username, pwd, isLogin = false;
 
 function login() {
     if (isLogin) {
-        $("#loginResult").html("You are logged in in as " + username);
+        $("#loginResult").html("You are logged in as " + username);
     } else {
         if (document.getElementById("username").value != null) {
             username = document.getElementById("username").value;
@@ -92,7 +92,7 @@ function login() {
 
 function loginApp() {
     if (isLogin) {
-        $("#loginAppResult").html("You are logged in in as " + username);
+        $("#loginAppResult").html("You are logged in as " + username);
     } else {
         if (document.getElementById("username2").value != null) {
             username = document.getElementById("username2").value;
@@ -134,8 +134,8 @@ Password: <input type="password" id="pw" value="Password007" size="40">
 <form>
 Username: <input type="text" id="username2" value="anonymous@moj.io" size="40"><br>
 Password: <input type="password" id="pw2" value="Password007" size="40"><br>
-Application: <input type="text" id="appId" value="9ea750d2-7085-4125-bcd8-5e6d05d1d695" size="60"><br>
-Secret: <input type="text" id="secret" value="e464f45a-e877-4655-b119-f7c58c10549f" size="60"><br>
+Application: <input type="text" id="appId" value="e626b252-5e1f-48c6-a56c-54832e655c46" size="60"><br>
+Secret: <input type="text" id="secret" value="295869cf-c4ae-439b-ba9e-a0fd1423ac0a" size="60"><br>
 <p><input type="button" value="Login" onclick="loginApp()"></p>
 </form> 
 
