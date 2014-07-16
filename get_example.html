@@ -1,0 +1,296 @@
+<html>
+    <head>
+        <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+        <meta charset="utf-8" />
+        <title>JavaScript Sample Runner</title>
+        
+        <script type="text/javascript" charset="utf-8" src="bower_components/jquery/dist/jquery.js"></script>
+        <script type="text/javascript" charset="utf-8" src="bower_components/mojio-js/dist/browser/MojioClient.js"></script>
+        
+        <script type="text/javascript">
+            var scripts = '<script type="text/javascript" charset="utf-8" src="bower_components/jquery/dist/jquery.js"><\/script>' +
+            '<script type="text/javascript" charset="utf-8" src="bower_components/mojio-js/dist/browser/MojioClient.js"><\/script>';
+
+            function init() {
+                var iframe = document.getElementById("runningArea");
+                var doc = iframe.contentDocument || iframe.contentWindow.document;
+                var html = 'Write you code in the textarea and run the code to see the result here.';
+                
+                doc.open();
+                doc.write(html);
+                doc.close();
+            }
+            
+            function insert_code(obj) {
+                var obj = '<style>' + document.getElementById("userCSS").value + '<\/style>';
+                obj += document.getElementById("userHtml").value;
+                obj += '<script>' + document.getElementById("userCode").value + '<\/script>';
+                
+                var iframe = document.getElementById("runningArea");
+                var doc = iframe.contentDocument || iframe.contentWindow.document;
+                var html = '<head>' + scripts + '<\/head>' + '<body>' + obj + '<\/body>';
+                
+                doc.open();
+                doc.writeln(html);
+                doc.close();
+            }
+            
+            window.onload = init;
+        </script>
+    </head>
+    <body>
+        <table width="100%" height="100%" border="0">
+            <thead> 
+                <tr height="30px">
+                    <th width="50%">
+                        <button onclick="insert_code()">Write your code and click me</button>
+                    </th>
+                    <th>Result</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr height="*">
+                    <td width="50%" valign="top">
+                        <textarea cols="110" rows="50" id="userCode" placeholder="js">
+var MojioClient, config, mojio_client;
+MojioClient = this.MojioClient;
+
+config = {
+    application: 'e626b252-5e1f-48c6-a56c-54832e655c46',
+    secret: 'a6c1a701-9497-4442-a0df-e49a00434e3a',     //sandbox
+    hostname: 'staging.api.moj.io',
+    version: 'v1',
+    port: '80'
+};
+
+mojio_client = new MojioClient(config);
+
+var username, pwd, isLogin = false;
+
+function login() {
+  if (!isLogin) {
+    if (document.getElementById("username").value != null) {
+        username = document.getElementById("username").value;
+    }
+    if (document.getElementById("pw").value != null) {
+        pwd = document.getElementById("pw").value;
+    }
+    mojio_client.login(username, pwd, function(error, result) {
+        var str = "";
+        if (error) {
+            $("#loginResult").html("Login error: " + error);
+        } else {
+            isLogin = true;
+            str += 'POST /login<br>';
+            str += JSON.stringify(result);
+            $("#loginResult").html(str);
+            displayEntityButtons();
+        }
+    });
+  }
+}
+
+function showTrips() {
+    var Trip = mojio_client.model("Trip");
+    mojio_client.get(Trip, {}, function(error, result) {
+        var str = "";
+        if (error) {
+            $("#resultDiv").html("Get Trips error: " + error);
+        } else {
+            var trips = [], i = 0;
+            
+            if (result instanceof Array) {
+                var arrlength = result.length;
+                for (; i < arrlength; i++) {
+                    trips[i] = new Trip(result[i]);
+                }
+            } else if (result.Data instanceof Array) {
+                var arrlength = result.Data.length;
+                for (; i < arrlength; i++) {
+                    trips[i] = new Trip(result.Data[i]);
+                }
+            } else if ((result.Data != null)) {
+                trips[i] = new Trip(result.Data);
+            } else {
+                trips[i] = new Trip(result);
+            }
+            console.log(trips);
+            // display the trip results
+            $("#resultDiv").empty();
+            if (i > 0) {
+                for (var j = 0; j < i; j++) {
+                    showItems(trips[j], ["StartTime", "EndTime", "StartAddress", "EndAddress", "VehicleId", "_id"], ["StartAddress", "EndAddress"]);
+                }
+            } else {
+                $("#resultDiv").html("<p>No trip found</p>");
+            }
+        }
+    });
+}
+
+function showApps() {
+    var App = mojio_client.model("App");
+    mojio_client.get(App, {}, function(error, result) {
+        var str = "";
+        if (error) {
+            $("#resultDiv").html("Get Apps error: " + error);
+        } else {
+            var apps = [], i = 0;
+
+            if (result instanceof Array) {
+                var arrlength = result.length;
+                for (; i < arrlength; i++) {
+                    apps[i] = new App(result[i]);
+                }
+            } else if (result.Data instanceof Array) {
+                var arrlength = result.Data.length;
+                for (; i < arrlength; i++) {
+                    apps[i] = new App(result.Data[i]);
+                }
+            } else if ((result.Data != null)) {
+                apps[i] = new App(result.Data);
+            } else {
+                apps[i] = new App(result);
+            }
+            console.log(apps);
+            // display the app results
+            $("#resultDiv").empty();
+            if (i > 0) {
+                for (var j = 0; j < i; j++) {
+                    showItems(apps[j], ["Name", "Description", "_id"]);
+                }
+            } else {
+                $("#resultDiv").html("<p>No app found</p>");
+            }
+        }
+    });
+}
+
+function showVehicles() {
+    var Vehicle = mojio_client.model("Vehicle");
+    mojio_client.get(Vehicle, {}, function(error, result) {
+        if (error) {
+            $("#resultDiv").html("Get Vehicle error: " + error);
+        } else {
+            var vehicles = [], i = 0;
+
+            if (result instanceof Array) {
+                var arrlength = result.length;
+                for (; i < arrlength; i++) {
+                    vehicles[i] = new Vehicle(result[i]);
+                }
+            } else if (result.Data instanceof Array) {
+                var arrlength = result.Data.length;
+                for (; i < arrlength; i++) {
+                    vehicles[i] = new Vehicle(result.Data[i]);
+                }
+            } else if ((result.Data != null)) {
+                vehicles[i] = new Vehicle(result.Data);
+            } else {
+                vehicles[i] = new Vehicle(result);
+            }
+            console.log(vehicles);
+            // display the vehicles
+            $("#resultDiv").empty();
+            if (i > 0) {
+                for (var j = 0; j < i; j++) {
+                    showItems(vehicles[j], ["Name", "OwnerId", "_id"]);
+                }
+            } else {
+                $("#resultDiv").html("<p>No vehicle found</p>");
+            }
+        }
+    });
+}
+
+function showMojio() {
+    var Mojio = mojio_client.model("Mojio");
+    mojio_client.get(Mojio, {}, function(error, result) {
+        if (error) {
+            $("#resultDiv").html("Get Mojio error: " + error);
+        } else {
+            var mojios = [], i = 0;
+
+            if (result instanceof Array) {
+                var arrlength = result.length;
+                for (; i < arrlength; i++) {
+                    mojios[i] = new Mojio(result[i]);
+                }
+            } else if (result.Data instanceof Array) {
+                var arrlength = result.Data.length;
+                for (; i < arrlength; i++) {
+                    mojios[i] = new Mojio(result.Data[i]);
+                }
+            } else if ((result.Data != null)) {
+                mojios[i] = new Mojio(result.Data);
+            } else {
+                mojios[i] = new Mojio(result);
+            }
+            console.log(mojios);
+            // display the mojios
+            $("#resultDiv").empty();
+            if (i > 0) {
+                for (var j = 0; j < i; j++) {
+                    showItems(mojios[j], ["Name", "OwnerId", "_id"]);
+                }
+            } else {
+                $("#resultDiv").html("<p>No mojio found</p>");
+            }
+        }
+    });
+}
+
+function showItems(items, fields, opts) {
+    $("#resultDiv").append('<dl>');
+    for (var key in items) {
+        if ($.inArray(key, fields) != -1) {
+            if ($.inArray(key, opts) != -1)
+                $("#resultDiv").append('<dt>' + key + '</dt><dd>' + items[key].Address1 + '</dd>');
+            else
+                $("#resultDiv").append('<dt>' + key + '</dt><dd>' + items[key] + '</dd>');
+        }
+    }
+    $("#resultDiv").append('</dl><br>');
+}
+
+function createButton(name, func) {
+    var createdButton = document.createElement("input");
+    createdButton.type = "button";
+    createdButton.value = name;
+    createdButton.onclick = func;
+    document.body.appendChild(createdButton);
+}
+
+function displayEntityButtons() {
+    if (isLogin) {
+        createButton("Show Trips", showTrips);
+        createButton("Show Apps", showApps);
+        createButton("Show Vehicles", showVehicles);
+        createButton("Show Mojio", showMojio);
+        var div = document.createElement('div');
+        div.id = 'resultDiv';
+        document.body.appendChild(div);
+    }
+}</textarea>
+                        <textarea cols="110" rows="20" id="userHtml" placeholder="html">
+<form>
+Username: <input type="text" id="username" value="anonymous@moj.io" size="40"><br>
+Password: <input type="password" id="pw" value="Password007" size="40">
+<p><input type="button" value="Login" onclick="login()"></p>
+</form> 
+
+<div id="loginResult"></div>
+<hr></textarea>
+                        <textarea cols="110" rows="20" id="userCSS" placeholder="css">
+body {
+    background-color: #d0e4fe;
+}</textarea>
+                    </td>
+                    <td width="50%" valign="top">
+                        <iframe id="runningArea" frameborder="1" width="100%" height="100%" sandbox="allow-same-origin allow-scripts"></iframe>
+                    </td>
+                </tr>
+            </tbody>        
+        </table>
+    </body>
+</html>
