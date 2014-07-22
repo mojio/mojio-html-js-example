@@ -52,7 +52,7 @@
                 <tr height="*">
                     <td width="45%" valign="top">
                         <textarea cols="100" rows="50" id="userCode" placeholder="js">
-var MojioClient, config, mojio_client;
+var MojioClient, config, mojio_client, User;
 MojioClient = this.MojioClient;
 
 config = {
@@ -76,6 +76,7 @@ function login() {
             pwd = document.getElementById("pw").value;
         }
         mojio_client = new MojioClient(config);
+        User = mojio_client.model("User");
         mojio_client.login(username, pwd, function(error, result) {
             var str = "";
             if (error) {
@@ -85,6 +86,21 @@ function login() {
                 str += 'POST /login<br>';
                 str += JSON.stringify(result);
                 $("#loginResult").html(str);
+                
+                mojio_client.query(User, {}, function(error, result) {
+                    if (error) {
+                        $("#loginResult").append('<p>Getting user information error: ' + error + '</p>');
+                    } else {
+                        var user;
+                        if (result instanceof Array) {
+                            user = new User(result[0]);
+                        } else {
+                            user = new User(result);
+                        }
+
+                        $("#loginResult").append('<p>Welcome ' + user.UserName + '</p>');
+                    }
+                });
             }
         });
     }
@@ -107,15 +123,31 @@ function loginApp() {
             config.secret = document.getElementById("secret").value;
         }
         mojio_client = new MojioClient(config);
+        User = mojio_client.model("User");
         mojio_client.login(username, pwd, function(error, result) {
             var str = "";
             if (error) {
-                $("#loginResult").html("Login error: " + error);
+                $("#loginAppResult").html("Login error: " + error);
             } else {
                 isLogin = true;
                 str += 'POST /login<br>';
                 str += JSON.stringify(result);
                 $("#loginAppResult").html(str);
+                
+                mojio_client.query(User, {}, function(error, result) {
+                    if (error) {
+                        $("#loginAppResult").append('<p>Getting user information error: ' + error + '</p>');
+                    } else {
+                        var user;
+                        if (result instanceof Array) {
+                            user = new User(result[0]);
+                        } else {
+                            user = new User(result);
+                        }
+
+                        $("#loginAppResult").append('<p>Welcome ' + user.UserName + '</p>');
+                    }
+                });
             }
         });
     }
