@@ -58,12 +58,10 @@ MojioClient = this.MojioClient;
 
 config = {
     application: 'f201b929-d28c-415d-9b71-8112532301cb',
-    //secret: '2ef80a7a-780d-41c1-8a02-13a286f11a23',         //live key
-    secret: '7e518bd2-66b4-47d3-9ab5-6395099fccb7',         //sandbox key
-    hostname: 'staging.api.moj.io',
-    //hostname: '192.168.0.109',
+    //secret: '7e518bd2-66b4-47d3-9ab5-6395099fccb7',       // staging sandbox
+    secret: '58f6cfec-3039-4b70-bd49-555102c6c254',         // develop sandbox
+    hostname: 'develop.api.moj.io',
     port: '80',
-    //port: '2006',
     version: 'v1'
 };
 
@@ -187,11 +185,26 @@ function showItems(items, div, entityType) {
                 if (entityType === "app") {
                     $(strId).append('<p>Observed App change:</p>');
                     $(strId).append(entity.Name + '<br>' + entity.Description + '<br>');
+                    unobserve(observedEntity, strId);
                 } else if (entityType === "vehicle") {
+                    //console.log(entity);
+                    var vehicle, location;
+                    vehicle = new Vehicle(entity);
+                    location = vehicle.LastLocation;
+                    
+                    $(strId).append('<p>Received vehicle event for ' + vehicle.Name + '</p>');
+                    
+                    if (vehicle.IgnitionOn)
+                        $(strId).append('Vehicle Ignition is: On<br>');
+                    else
+                        $(strId).append('Vehicle Ignition is: Off<br>');
+                    
+                    $(strId).append('Last location of ' + vehicle.Name + ': Lat - ' + location.Lat + ', Lng - ' + location.Lng + '<br>');
+                    
+                } else {
                     console.log(entity);
+                    unobserve(observedEntity, strId);
                 }
-                
-                unobserve(observedEntity, strId);
             };
             
             $(strId).empty();
@@ -215,7 +228,19 @@ function showItems(items, div, entityType) {
                         observer = result;
                         //artificial change in order to observe events
                         if (entityType === "app") {
-                            artificialChange(observedEntity, strId);
+                            $(strId).append("Current App Description: ==" + observedEntity.Description + "==");
+                            observedEntity.Description = "Changed to something random [" + Math.random() + "]";
+                            setTimeout(function() {
+                                mojio_client.put(observedEntity, function(error, result) {
+                                    if (error) {
+                                        $(strId).append("<br>App changed error: " + error);
+                                    } else {
+                                        var app = new App(result);
+                                        items[list.selectedIndex] = app;
+                                        $(strId).append("<br>App description changed successfully to ==" + app.Description + "==");
+                                    }
+                                });
+                            }, 1000);
                         } else if (entityType === "vehicle") {
                             $(strId).append('<p>You can simulate vehicle events on the Vehicle Simulator</p>');
                         }
@@ -229,20 +254,6 @@ function showItems(items, div, entityType) {
     var listenDiv = document.createElement('div');
     listenDiv.id = 'listen'+div;
     temp.appendChild(listenDiv);
-}
-
-function artificialChange(observedEntity, strId) {
-    setTimeout(function() {
-        $(strId).append("Current App Description: " + observedEntity.Description);
-        observedEntity.Description = "Changed to something random [" + Math.random() + "]";
-        mojio_client.put(observedEntity, function(error, result) {
-            if (error) {
-                $(strId).append("<br>App changed error: " + error);
-            } else {
-                $(strId).append("<br>App description changed successfully.");
-            }
-        });
-    }, 2000);
 }
 
 function unobserve(observedEntity, strId, _observer) {
