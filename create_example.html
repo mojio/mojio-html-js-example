@@ -1,0 +1,248 @@
+<html>
+    <head>
+        <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+        <meta charset="utf-8" />
+        <title>JavaScript Sample Runner</title>
+        
+        <script type="text/javascript" charset="utf-8" src="bower_components/jquery/dist/jquery.js"></script>
+        <script type="text/javascript" charset="utf-8" src="bower_components/mojio-js/dist/browser/MojioClient.js"></script>
+        
+        <script type="text/javascript">
+            var scripts = '<script type="text/javascript" charset="utf-8" src="bower_components/jquery/dist/jquery.js"><\/script>' +
+            '<script type="text/javascript" charset="utf-8" src="bower_components/mojio-js/dist/browser/MojioClient.js"><\/script>' +
+            '<script type="text/javascript" charset="utf-8" src="bower_components/signalr/jquery.signalR-2.0.2.js"><\/script>';
+
+            function init() {
+                var iframe = document.getElementById("runningArea");
+                var doc = iframe.contentDocument || iframe.contentWindow.document;
+                var html = 'Write you code in the textarea and run the code to see the result here.';
+                
+                doc.open();
+                doc.write(html);
+                doc.close();
+            }
+            
+            function insert_code(obj) {
+                var obj = '<style>' + document.getElementById("userCSS").value + '<\/style>';
+                obj += document.getElementById("userHtml").value;
+                obj += '<script>' + document.getElementById("userCode").value + '<\/script>';
+                
+                var iframe = document.getElementById("runningArea");
+                var doc = iframe.contentDocument || iframe.contentWindow.document;
+                var html = '<head>' + scripts + '<\/head>' + '<body>' + obj + '<\/body>';
+                
+                doc.open();
+                doc.writeln(html);
+                doc.close();
+            }
+            
+            window.onload = init;
+        </script>
+    </head>
+    <body>
+        <table width="100%" height="100%" border="0">
+            <thead> 
+                <tr height="30px">
+                    <th width="50%">
+                        <button onclick="insert_code()">Write your code and click me</button>
+                    </th>
+                    <th>Result</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr height="*">
+                    <td width="50%" valign="top">
+                        <textarea cols="110" rows="50" id="userCode" placeholder="js">
+var MojioClient, config, mojio_client;
+MojioClient = this.MojioClient;
+
+config = {
+    application: 'f201b929-d28c-415d-9b71-8112532301cb',
+    secret: '2ef80a7a-780d-41c1-8a02-13a286f11a23',         //live key
+    hostname: 'staging.api.moj.io',
+    port: '80',
+    version: 'v1'
+};
+
+mojio_client = new MojioClient(config);
+
+var username, pwd, isLogin = false;
+var App;
+
+function login() {
+    if (!isLogin) {
+        if (document.getElementById("username").value !== null) {
+            username = document.getElementById("username").value;
+        }
+        if (document.getElementById("pw").value !== null) {
+            pwd = document.getElementById("pw").value;
+        }
+        mojio_client.login(username, pwd, function(error, result) {
+            var str = "";
+            if (error) {
+                $("#loginResult").html("Login error: " + error);
+            } else {
+                isLogin = true;
+                str += 'POST /login<br>';
+                str += JSON.stringify(result);
+                $("#loginResult").html(str);
+                displayEntityButtons();
+                App = mojio_client.model("App");
+            }
+        });
+    }
+}
+
+function showApps() {
+    mojio_client.get(App, {}, function(error, result) {
+        var str = "";
+        if (error) {
+            $("#resultDiv").html("Get Apps error: " + error);
+        } else {
+            var apps = [], i = 0;
+
+            if (result instanceof Array) {
+                var arrlength = result.length;
+                for (; i < arrlength; i++) {
+                    apps[i] = new App(result[i]);
+                }
+            } else if (result.Data instanceof Array) {
+                var arrlength = result.Data.length;
+                for (; i < arrlength; i++) {
+                    apps[i] = new App(result.Data[i]);
+                }
+            } else if ((result.Data != null)) {
+                apps[i] = new App(result.Data);
+            } else {
+                apps[i] = new App(result);
+            }
+
+            // display the app results
+            $("#resultDiv").empty();
+            if (i > 0) {
+                $("#resultDiv").html("<p>App list</p>");
+                showItems(apps, "resultDiv", "app");
+            } else {
+                $("#resultDiv").html("<p>App list - No App found</p>");
+            }
+        }
+    });
+}
+
+function showItems(items, div, entityType) {
+    var length = items.length;
+    var listId = div + "list";
+    $("#"+div).append('<select id="' + listId + '" size ="' + length + '"></select><br>');
+    for (var i = 0; i < length; i++) {
+        $("#"+listId).append('<option value='+i+'>' + items[i].Name + '</option>');
+    }
+}
+
+function createApp() {
+    var app, appName, appDescription;
+    
+    $("#createDivResult").html('');
+    if (document.getElementById("appNameId").value !== null) {
+        appName = document.getElementById("appNameId").value;
+        if (appName === "") {
+            $("#createDivResult").append("You should give your App a name.");
+            return;
+        }
+    } else {
+        return;
+    }
+        
+    if (document.getElementById("appDescriptionId").value !== null) {
+        appDescription = document.getElementById("appDescriptionId").value;
+        if (appDescription === "") {
+            $("#createDivResult").append("You should give your App a description.");
+            return;
+        }
+    } else {
+        return;
+    }
+    
+    app = new App().mock();
+    app.Name = appName;
+    app.Description = appDescription;
+    
+    mojio_client.post(app, function(error, result) {
+        if (error) {
+            $("#createDivResult").append("Create App error: " + error);
+        } else {
+            console.log(result);
+            $("#createDivResult").append('<p>App created. Refresh the list by pressing the "Get Apps" button.</p>');
+        }
+    });
+}
+
+function inputFields(parentDiv) {
+    var appName = document.createElement("input");
+    appName.id = 'appNameId';
+    appName.setAttribute('type', 'text');
+    appName.setAttribute('value', 'Test App');
+    
+    var appDescription = document.createElement("input");
+    appDescription.id = 'appDescriptionId';
+    appDescription.setAttribute('type', 'text');
+    appDescription.setAttribute('value', 'Test App Description');
+    
+    var strID = "#" + parentDiv.id;
+    parentDiv.appendChild(appName);
+    $(strID).append('<br>');
+    parentDiv.appendChild(appDescription);
+    $(strID).append('<br>');
+}
+
+function createButton(name, func, parent) {
+    var createdButton = document.createElement("input");
+    createdButton.type = "button";
+    createdButton.value = name;
+    createdButton.onclick = func;
+    if (parent != null)
+        parent.appendChild(createdButton);
+    else
+        document.body.appendChild(createdButton);
+}
+
+function displayEntityButtons() {
+    if (isLogin) {
+        createButton("Get Apps", showApps);
+        var div = document.createElement('div');
+        div.id = 'resultDiv';
+        document.body.appendChild(div);
+        
+        var div2 = document.createElement('div');
+        div2.id = 'createDiv';
+        document.body.appendChild(div2);
+        $("#createDiv").prepend('<hr>');
+        inputFields(div2);
+        createButton("Create App", createApp, div2);
+        
+        var div3 = document.createElement('div');
+        div3.id = 'createDivResult';
+        div2.appendChild(div3);
+    }
+}</textarea>
+                        <textarea cols="110" rows="20" id="userHtml" placeholder="html">
+<form>
+Username: <input type="text" id="username" value="anonymous@moj.io" size="40"><br>
+Password: <input type="password" id="pw" value="Password007" size="40">
+<p><input type="button" value="Login" onclick="login()"></p>
+</form> 
+
+<div id="loginResult"></div>
+<hr></textarea>
+                        <textarea cols="110" rows="20" id="userCSS" placeholder="css">
+body {
+    background-color: #d0e4fe;
+}</textarea>
+                    </td>
+                    <td width="50%" valign="top">
+                        <iframe id="runningArea" frameborder="1" width="100%" height="100%" sandbox="allow-same-origin allow-scripts"></iframe>
+                    </td>
+                </tr>
+            </tbody>        
+        </table>
+    </body>
+</html>
