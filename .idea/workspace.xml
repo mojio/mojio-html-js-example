@@ -7,6 +7,7 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/get_example.html" afterPath="$PROJECT_DIR$/get_example.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/login_example.html" afterPath="$PROJECT_DIR$/login_example.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="mojio-html-js-example.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -47,10 +48,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="observe_example.html" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="observe_example.html" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/observe_example.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="63" column="17" selection-start="2665" selection-end="2865" vertical-scroll-proportion="-6.25" vertical-offset="795" max-vertical-offset="6058">
+            <state line="60" column="64" selection-start="2786" selection-end="2786" vertical-scroll-proportion="0.16329704" vertical-offset="795" max-vertical-offset="6058">
               <folding />
             </state>
           </provider>
@@ -74,10 +75,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="get_example.html" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="get_example.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/get_example.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="291" column="0" selection-start="10496" selection-end="10496" vertical-scroll-proportion="6.9773097" vertical-offset="60" max-vertical-offset="5057">
+            <state line="32" column="27" selection-start="1751" selection-end="1751" vertical-scroll-proportion="72.6" vertical-offset="4110" max-vertical-offset="5057">
               <folding />
             </state>
           </provider>
@@ -301,8 +302,8 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.14928533" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Debug" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.26220807" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.14928533" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.26220807" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -576,13 +577,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/observe_example.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="63" column="17" selection-start="2665" selection-end="2865" vertical-scroll-proportion="-6.25" vertical-offset="795" max-vertical-offset="6058">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/delete_example.html">
       <provider selected="true" editor-type-id="text-editor">
         <state line="63" column="4" selection-start="2852" selection-end="2852" vertical-scroll-proportion="-18.75" vertical-offset="495" max-vertical-offset="3748">
@@ -613,7 +607,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/get_example.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="291" column="0" selection-start="10496" selection-end="10496" vertical-scroll-proportion="6.9773097" vertical-offset="60" max-vertical-offset="5057">
+        <state line="32" column="27" selection-start="1751" selection-end="1751" vertical-scroll-proportion="72.6" vertical-offset="4110" max-vertical-offset="5057">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/observe_example.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="60" column="64" selection-start="2786" selection-end="2786" vertical-scroll-proportion="0.16329704" vertical-offset="795" max-vertical-offset="6058">
           <folding />
         </state>
       </provider>
