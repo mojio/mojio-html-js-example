@@ -54,17 +54,17 @@
                         <textarea cols="115" rows="50" id="userCode" placeholder="js">
 var App, MojioClient, config, mojio_client;
 MojioClient = this.MojioClient;
-App = this.App;
 
 config = {
-    application: '576f5522-9b0c-4f1a-82d4-4b4fbb7272bc',
-    secret: '9f37148a-d431-4777-aa97-599093d72461',         // production sandbox
+    application: 'f201b929-d28c-415d-9b71-8112532301cb',    // unrestricted app
+    secret: 'f0927a0a-386b-4148-be8d-5ffd7468ea6b',         // production sandbox
     hostname: 'api.moj.io',
     port: '80',
     version: 'v1'
 };
 
 mojio_client = new MojioClient(config);
+App = mojio_client.model('App');
 
 function display (code)
 {
@@ -97,7 +97,7 @@ mojio_client.login('anonymous@moj.io', 'Password007', function(error, result) {
                 str += JSON.stringify(result);
                 display(str);
 
-                str += '<p>' + 'hello Name: ' + app.Name + '</p>'
+                str += '<p>' + 'App Name: ' + app.Name + '</p>'
                 display(str);
             }
         });
