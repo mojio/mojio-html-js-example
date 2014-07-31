@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5cc6d183-27bd-4423-a60e-3be05d1e6917" name="Default" comment="" />
+    <list default="true" id="5cc6d183-27bd-4423-a60e-3be05d1e6917" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+    </list>
     <ignored path="mojio-html-js-example.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -41,10 +43,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="observe_example.html" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="observe_example.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/observe_example.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="72" column="19" selection-start="3047" selection-end="3047" vertical-scroll-proportion="0.0" vertical-offset="1080" max-vertical-offset="6305">
+            <state line="72" column="19" selection-start="3047" selection-end="3047" vertical-scroll-proportion="-0.0" vertical-offset="1080" max-vertical-offset="6305">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="simplified_get.html" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/simplified_get.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="109" column="13" selection-start="3944" selection-end="4334" vertical-scroll-proportion="0.48913044" vertical-offset="1320" max-vertical-offset="4964">
               <folding />
             </state>
           </provider>
@@ -137,6 +148,7 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -171,7 +183,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -180,7 +191,7 @@
     <property name="restartRequiresConfirmation" value="true" />
     <property name="FullScreen" value="false" />
   </component>
-  <component name="RunManager" selected="JavaScript Debug.get_example.html">
+  <component name="RunManager" selected="JavaScript Debug.simple get example">
     <configuration default="false" name="login_example.html" type="JavascriptDebugType" factoryName="JavaScript Debug" singleton="true" temporary="true" uri="http://localhost:63342/mojio-html-js-example/login_example.html">
       <RunnerSettings RunnerId="JavascriptDebugRunner" />
       <ConfigurationWrapper RunnerId="JavascriptDebugRunner" />
@@ -189,6 +200,14 @@
     <configuration default="false" name="test.html" type="JavascriptDebugType" factoryName="JavaScript Debug" singleton="true" temporary="true" uri="http://localhost:63342/mojio-html-js-example/test.html">
       <RunnerSettings RunnerId="JavascriptDebugRunner" />
       <ConfigurationWrapper RunnerId="JavascriptDebugRunner" />
+      <method />
+    </configuration>
+    <configuration default="true" type="DartUnitRunConfigurationType" factoryName="DartUnit">
+      <option name="VMOptions" />
+      <option name="arguments" />
+      <option name="filePath" />
+      <option name="scope" value="ALL" />
+      <option name="testName" />
       <method />
     </configuration>
     <configuration default="true" type="DartCommandLineRunConfigurationType" factoryName="Dart Command Line Application">
@@ -201,23 +220,15 @@
       <option name="showConsoleOnStdOut" value="false" />
       <method />
     </configuration>
-    <configuration default="true" type="DartUnitRunConfigurationType" factoryName="DartUnit">
-      <option name="VMOptions" />
-      <option name="arguments" />
-      <option name="filePath" />
-      <option name="scope" value="ALL" />
-      <option name="testName" />
-      <method />
-    </configuration>
-    <configuration default="true" type="JavaScriptTestRunnerKarma" factoryName="Karma" singleton="true" config-file="">
-      <envs />
-      <method />
-    </configuration>
     <configuration default="true" type="JSTestDriver:ConfigurationType" factoryName="JsTestDriver">
       <setting name="configLocationType" value="CONFIG_FILE" />
       <setting name="settingsFile" value="" />
       <setting name="serverType" value="INTERNAL" />
       <setting name="preferredDebugBrowser" value="CHROME" />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavaScriptTestRunnerKarma" factoryName="Karma" singleton="true" config-file="">
+      <envs />
       <method />
     </configuration>
     <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug" singleton="true">
@@ -247,13 +258,19 @@
       <ConfigurationWrapper RunnerId="JavascriptDebugRunner" />
       <method />
     </configuration>
-    <list size="6">
+    <configuration default="false" name="simple get example" type="JavascriptDebugType" factoryName="JavaScript Debug" uri="http://localhost:63342/mojio-html-js-example/simplified_get.html">
+      <RunnerSettings RunnerId="JavascriptDebugRunner" />
+      <ConfigurationWrapper RunnerId="JavascriptDebugRunner" />
+      <method />
+    </configuration>
+    <list size="7">
       <item index="0" class="java.lang.String" itemvalue="JavaScript Debug.create_example.html" />
       <item index="1" class="java.lang.String" itemvalue="JavaScript Debug.get_example.html" />
       <item index="2" class="java.lang.String" itemvalue="JavaScript Debug.delete_example.html" />
       <item index="3" class="java.lang.String" itemvalue="JavaScript Debug.index.html" />
-      <item index="4" class="java.lang.String" itemvalue="JavaScript Debug.login_example.html" />
-      <item index="5" class="java.lang.String" itemvalue="JavaScript Debug.test.html" />
+      <item index="4" class="java.lang.String" itemvalue="JavaScript Debug.simple get example" />
+      <item index="5" class="java.lang.String" itemvalue="JavaScript Debug.login_example.html" />
+      <item index="6" class="java.lang.String" itemvalue="JavaScript Debug.test.html" />
     </list>
     <recent_temporary>
       <list size="2">
@@ -290,14 +307,14 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-1916" y="22" width="1910" height="1058" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.14928533" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.26168224" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2611465" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -328,13 +345,6 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/delete_example.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="63" column="4" selection-start="2852" selection-end="2852" vertical-scroll-proportion="0.0" vertical-offset="945" max-vertical-offset="3150">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/create_example.html">
       <provider selected="true" editor-type-id="text-editor">
         <state line="54" column="86" selection-start="2581" selection-end="2581" vertical-scroll-proportion="0.0" vertical-offset="810" max-vertical-offset="3735">
@@ -624,6 +634,13 @@
     <entry file="file://$PROJECT_DIR$/observe_example.html">
       <provider selected="true" editor-type-id="text-editor">
         <state line="72" column="19" selection-start="3047" selection-end="3047" vertical-scroll-proportion="0.0" vertical-offset="1080" max-vertical-offset="6305">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/simplified_get.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="109" column="13" selection-start="3944" selection-end="4334" vertical-scroll-proportion="0.48913044" vertical-offset="1320" max-vertical-offset="4964">
           <folding />
         </state>
       </provider>
