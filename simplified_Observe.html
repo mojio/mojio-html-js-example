@@ -57,7 +57,7 @@ var MojioClient, config, mojio_client, App, Vehicle, Observer, observer;
 MojioClient = this.MojioClient;
 
 config = {
-    application: '576f5522-9b0c-4f1a-82d4-4b4fbb7272bc',
+    application: '576f5522-9b0c-4f1a-82d4-4b4fbb7272bc',    // Restricted app
     secret: '9f37148a-d431-4777-aa97-599093d72461',         // production sandbox
     hostname: 'api.moj.io',
     port: '80',
@@ -234,7 +234,7 @@ function listenVehicle() {
     
     $(strId).empty();
     if (list.selectedIndex > -1) {
-        var observedEntity = new Vehicle(vehicles[list.selectedIndex]);
+        observedEntity = new Vehicle(vehicles[list.selectedIndex]);
         $(strId).append('<p>Observe for the Vehicle: ' + observedEntity.Name + '</p>');
         
         mojio_client.observe(observedEntity, null, changedCallback, function(error, result) {
@@ -250,26 +250,12 @@ function listenVehicle() {
     }
 }
     
-function unobserve(observedEntity, strId, _observer) {
-    if (_observer)
-        observer_default = _observer;
-    else
-        observer_default = observer;
-        
-    mojio_client.unobserve(observer_default, observedEntity, null, function(error, result) {
+function unobserve(observedEntity, strId) {      
+    mojio_client.unobserve(observer, observedEntity, null, function(error, result) {
         if (error) {
-            if (strId) {
-                $(strId).append('<p>Unobserve error: ' + error + '</p>');
-            } else {
-                alert("Unobserve error: " + error);
-            }
+            $(strId).append('<p>Unobserve error: ' + error + '</p>');
         } else {
-            if (strId) {
-                $(strId).append('<p>Unobserved the entity: ' + observedEntity.Name + '</p>');
-            } else {
-                console.log("Unobserved the entity: ");
-                console.log(observedEntity.Name);
-            }
+            $(strId).append('<p>Unobserved the entity: ' + observedEntity.Name + '</p>');
         }
     });
 }</textarea>
@@ -296,7 +282,20 @@ function unobserve(observedEntity, strId, _observer) {
                         <textarea cols="110" rows="20" id="userCSS" placeholder="css">
 body {
     background-color: #d0e4fe;
-}</textarea>
+}
+
+#listenAppDiv {
+    font-size:110%;
+    color: #0000E6;
+    font-weight: 500;
+}
+
+#listenVehicleDiv {
+    font-size:110%;
+    color: #0000E6;
+    font-weight: 500;
+}
+</textarea>
                     </td>
                     <td width="50%" valign="top">
                         <iframe id="runningArea" frameborder="1" width="100%" height="100%" sandbox="allow-same-origin allow-scripts"></iframe>
