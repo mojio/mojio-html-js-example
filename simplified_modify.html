@@ -1,0 +1,181 @@
+<html>
+    <head>
+        <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+        <meta charset="utf-8" />
+        <title>JavaScript Sample Runner</title>
+        
+        <script type="text/javascript" charset="utf-8" src="bower_components/jquery/dist/jquery.js"></script>
+        <script type="text/javascript" charset="utf-8" src="bower_components/mojio-js/dist/browser/MojioClient.js"></script>
+        
+        <script type="text/javascript">
+            var scripts = '<script type="text/javascript" charset="utf-8" src="bower_components/jquery/dist/jquery.js"><\/script>' +
+            '<script type="text/javascript" charset="utf-8" src="bower_components/mojio-js/dist/browser/MojioClient.js"><\/script>';
+
+            function init() {
+                var iframe = document.getElementById("runningArea");
+                var doc = iframe.contentDocument || iframe.contentWindow.document;
+                var html = 'Write you code in the textarea and run the code to see the result here.';
+                
+                doc.open();
+                doc.write(html);
+                doc.close();
+            }
+            
+            function insert_code(obj) {
+                var obj = '<style>' + document.getElementById("userCSS").value + '<\/style>';
+                obj += document.getElementById("userHtml").value;
+                obj += '<script>' + document.getElementById("userCode").value + '<\/script>';
+                
+                var iframe = document.getElementById("runningArea");
+                var doc = iframe.contentDocument || iframe.contentWindow.document;
+                var html = '<head>' + scripts + '<\/head>' + '<body>' + obj + '<\/body>';
+                
+                doc.open();
+                doc.writeln(html);
+                doc.close();
+            }
+            
+            window.onload = init;
+        </script>
+    </head>
+    <body>
+        <table width="100%" height="100%" border="0">
+            <thead> 
+                <tr height="30px">
+                    <th width="50%">
+                        <button onclick="insert_code()">Write your code and click me</button>
+                    </th>
+                    <th>Result</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr height="*">
+                    <td width="50%" valign="top">
+                        <textarea cols="110" rows="50" id="userCode" placeholder="js">
+var MojioClient, config, mojio_client, User, user;
+MojioClient = this.MojioClient;
+
+config = {
+    application: '576f5522-9b0c-4f1a-82d4-4b4fbb7272bc',    // Restricted app
+    secret: '9f37148a-d431-4777-aa97-599093d72461',         // production sandbox
+    hostname: 'api.moj.io',
+    port: '80',
+    version: 'v1'
+};
+
+mojio_client = new MojioClient(config);
+
+var username = 'anonymous@moj.io', pwd = 'Password007', isLogin = false;
+
+(function login() {
+  if (!isLogin) {
+    mojio_client.login(username, pwd, function(error, result) {
+        if (error) {
+            $("#loginResult").append("Login error: " + error);
+        } else {
+            isLogin = true;
+            user = result;
+            $("#loginResult").append('Logged in successfully<br>');
+            $("#loginResult").append('UserId: ' + user.UserId + '<br>');
+            $("#loginResult").append('ValidUntil: ' + user.ValidUntil + '<br>');
+            User = mojio_client.model("User");
+            showUserInfo();
+        }
+    });
+  }
+}).call(this);
+
+function showUserInfo() {
+    mojio_client.query(User, {}, function(error, result) {
+        if (error) {
+            $("#resultDiv").html('<p>Getting user information error: ' + error + '</p>');
+        } else {
+            user = mojio_client.getResults(User, result)[0];
+
+            $("#resultDiv").html('<p>Welcome ' + user.Name + '</p>');
+            $("#first").html('Current first name: ' + user.FirstName + '<br>');
+            $("#last").html('Current last name: ' + user.LastName + '<br>');
+        }
+    });
+}
+
+function modifyFN() {
+    if (document.getElementById("firstName").value !== null) {
+        user.FirstName = document.getElementById("firstName").value;
+        if (user.FirstName === "") {
+            $("#first").html("You should give yourself a first name.");
+            return;
+        }
+    } else {
+        return;
+    }
+    
+    mojio_client.put(user, function(error, result) {
+        if (error) {
+            $("#first").html("User changed error: " + error);
+        } else {
+            $("#first").html('First name changed successfully. Click "Show User Info" to refresh');
+        }
+    });
+}
+
+function modifyLN() {
+    if (document.getElementById("lastName").value !== null) {
+        user.LastName = document.getElementById("lastName").value;
+        if (user.LastName === "") {
+            $("#last").html("You should give yourself a last name.");
+            return;
+        }
+    } else {
+        return;
+    }
+    
+    mojio_client.put(user, function(error, result) {
+        if (error) {
+            $("#last").html("User info changed error: " + error);
+        } else {
+            $("#last").html('Last name changed successfully. Click "Show User Info" to refresh');
+        }
+    });
+}</textarea>
+                        <textarea cols="110" rows="20" id="userHtml" placeholder="html">
+<p> Logging in as user: anonymous@moj.io</p>
+<div id="loginResult"></div>
+<hr>
+
+<input type="button" value="Show User Info" onclick="showUserInfo()">
+
+<div id="resultDiv"></div>
+<div id="first"></div>
+First Name: <input type="text" id="firstName" value="John" size="40">
+<input type="button" value="Modify First Name" onclick="modifyFN()"><br><br>
+
+<div id="last"></div>
+Last Name: <input type="text" id="lastName" value="Doe" size="40">
+<input type="button" value="Modify Last Name" onclick="modifyLN()">
+</textarea>
+                        <textarea cols="110" rows="20" id="userCSS" placeholder="css">
+body {
+    background-color: #d0e4fe;
+}
+
+#resultDiv {
+    font-size:115%;
+    color: #0000CF;
+    font-weight: bold;
+}
+
+#mydl {
+    font-size:110%;
+    color: #E65C00;
+    font-weight: 500;
+}</textarea>
+                    </td>
+                    <td width="50%" valign="top">
+                        <iframe id="runningArea" frameborder="1" width="100%" height="100%" sandbox="allow-same-origin allow-scripts"></iframe>
+                    </td>
+                </tr>
+            </tbody>        
+        </table>
+    </body>
+</html>
