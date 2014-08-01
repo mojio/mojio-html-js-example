@@ -67,7 +67,7 @@ config = {
 mojio_client = new MojioClient(config);
 
 var username = 'anonymous@moj.io', pwd = 'Password007', isLogin = false;
-var apps = [], vehicles = [];
+var apps, vehicles;
 
 (function login() {
   if (!isLogin) {
@@ -96,32 +96,10 @@ function showApps() {
         if (error) {
             $("#resultDiv").html("Get Apps error: " + error);
         } else {
-            var i = 0;
-
-            if (result instanceof Array) {
-                var arrlength = result.length;
-                for (; i < arrlength; i++) {
-                    apps[i] = new App(result[i]);
-                }
-            } else if (result.Data instanceof Array) {
-                var arrlength = result.Data.length;
-                for (; i < arrlength; i++) {
-                    apps[i] = new App(result.Data[i]);
-                }
-            } else if ((result.Data != null)) {
-                apps[i] = new App(result.Data);
-            } else {
-                apps[i] = new App(result);
-            }
+            apps = mojio_client.getResults(App, result);
 
             // display the app results
-            $("#resultDiv").empty();
-            if (i > 0) {
-                $("#resultDiv").html("<p>App list - select one and press 'Listen' for updates.</p>");
-                showItems(apps, "mySelect", "app");
-            } else {
-                $("#resultDiv").html("<p>App list - No App found</p>");
-            }
+            displayResults(apps, "mySelect", "#resultDiv", "App list - select one and press 'Listen' for updates", "App list - No App found");
         }
     });
 }
@@ -131,46 +109,30 @@ function showVehicles() {
         if (error) {
             $("#resultDiv2").html("Get Vehicle error: " + error);
         } else {
-            var i = 0;
-
-            if (result instanceof Array) {
-                var arrlength = result.length;
-                for (; i < arrlength; i++) {
-                    vehicles[i] = new Vehicle(result[i]);
-                }
-            } else if (result.Data instanceof Array) {
-                var arrlength = result.Data.length;
-                for (; i < arrlength; i++) {
-                    vehicles[i] = new Vehicle(result.Data[i]);
-                }
-            } else if ((result.Data != null)) {
-                vehicles[i] = new Vehicle(result.Data);
-            } else {
-                vehicles[i] = new Vehicle(result);
-            }
+            vehicles = mojio_client.getResults(Vehicle, result);
 
             // display the vehicles in a listbox
-            $("#resultDiv2").empty();
-            if (i > 0) {
-                $("#resultDiv2").html("<p>Vehicle list - select one and press 'Listen' for updates.</p>");
-                showItems(vehicles, "mySelect2", "vehicle");
-            } else {
-                $("#resultDiv2").html("<p>Vehicle list - No vehicle found</p>");
-            }
+            displayResults(vehicles, "mySelect2", "#resultDiv2", "Vehicle list - select one and press 'Listen' for updates", "Vehicle list - No vehicle found");
         }
     });
 }
 
-function showItems(items, select, entityType) {
+function displayResults(items, selectList, div, titleMsg, notFoundMsg) {
     var length = items.length;
-    var mySelect = document.getElementById(select);
+    var mySelect = document.getElementById(selectList);
     mySelect.size = length;
-
-    for (var i = 0; i < length; i++) {
-        var option = document.createElement("option");
-        option.text = items[i].Name;
-        option.value = i;
-        mySelect.options.add(option);
+    $(div).empty();
+    
+    if (length > 0) {
+        $(div).html('<p>' + titleMsg + '</p>');
+        for (var i = 0; i < length; i++) {
+            var option = document.createElement("option");
+            option.text = items[i].Name;
+            option.value = i;
+            mySelect.options.add(option);
+        }
+    } else {
+        $(div).html('<p>' + notFoundMsg + '</p>');
     }
 }
 
