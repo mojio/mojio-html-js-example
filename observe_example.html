@@ -252,8 +252,8 @@ function logObservers() {
             console.log("Get Observer error: ");
             console.log(error);
         } else {
-            var observers = mojio_client.getResults(Vehicle, result);
-            var i = observe.length;
+            var observers = mojio_client.getResults(Observer, result);
+            var i = observers.length;
             if (i > 0) {
                 for (var j = 0; j < i; j++) {
                     console.log("Observer [" + j + "]: ");
