@@ -28,7 +28,7 @@
       <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="63" column="2" selection-start="2782" selection-end="2782" vertical-scroll-proportion="0.0" vertical-offset="945" max-vertical-offset="1830">
+            <state line="63" column="2" selection-start="2782" selection-end="2782" vertical-scroll-proportion="0.0" vertical-offset="945" max-vertical-offset="1710">
               <folding />
             </state>
           </provider>
@@ -37,7 +37,7 @@
       <file leaf-file-name="login_example.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/login_example.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="58" column="4" selection-start="2546" selection-end="2546" vertical-scroll-proportion="0.0" vertical-offset="870" max-vertical-offset="2835">
+            <state line="58" column="4" selection-start="2546" selection-end="2546" vertical-scroll-proportion="0.0" vertical-offset="870" max-vertical-offset="2685">
               <folding />
             </state>
           </provider>
@@ -46,7 +46,7 @@
       <file leaf-file-name="observe_example.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/observe_example.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="72" column="19" selection-start="3047" selection-end="3047" vertical-scroll-proportion="0.0" vertical-offset="1080" max-vertical-offset="5460">
+            <state line="72" column="19" selection-start="3047" selection-end="3047" vertical-scroll-proportion="0.0" vertical-offset="1080" max-vertical-offset="4725">
               <folding />
             </state>
           </provider>
@@ -55,7 +55,7 @@
       <file leaf-file-name="simplified_get.html" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/simplified_get.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="132" column="25" selection-start="5088" selection-end="5097" vertical-scroll-proportion="0.0" vertical-offset="1980" max-vertical-offset="4943">
+            <state line="64" column="0" selection-start="2761" selection-end="2761" vertical-scroll-proportion="0.9342949" vertical-offset="377" max-vertical-offset="3714">
               <folding />
             </state>
           </provider>
@@ -64,7 +64,7 @@
       <file leaf-file-name="delete_example.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/delete_example.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="63" column="4" selection-start="2875" selection-end="2875" vertical-scroll-proportion="0.0" vertical-offset="945" max-vertical-offset="3150">
+            <state line="63" column="4" selection-start="2875" selection-end="2875" vertical-scroll-proportion="0.0" vertical-offset="945" max-vertical-offset="2910">
               <folding />
             </state>
           </provider>
@@ -73,7 +73,7 @@
       <file leaf-file-name="create_example.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/create_example.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="54" column="86" selection-start="2581" selection-end="2581" vertical-scroll-proportion="0.0" vertical-offset="810" max-vertical-offset="3735">
+            <state line="54" column="86" selection-start="2581" selection-end="2581" vertical-scroll-proportion="0.0" vertical-offset="810" max-vertical-offset="3495">
               <folding />
             </state>
           </provider>
@@ -82,7 +82,7 @@
       <file leaf-file-name="get_example.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/get_example.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="32" column="27" selection-start="1751" selection-end="1751" vertical-scroll-proportion="0.0" vertical-offset="480" max-vertical-offset="4485">
+            <state line="32" column="27" selection-start="1751" selection-end="1751" vertical-scroll-proportion="0.0" vertical-offset="480" max-vertical-offset="3330">
               <folding />
             </state>
           </provider>
@@ -202,14 +202,6 @@
       <ConfigurationWrapper RunnerId="JavascriptDebugRunner" />
       <method />
     </configuration>
-    <configuration default="true" type="DartUnitRunConfigurationType" factoryName="DartUnit">
-      <option name="VMOptions" />
-      <option name="arguments" />
-      <option name="filePath" />
-      <option name="scope" value="ALL" />
-      <option name="testName" />
-      <method />
-    </configuration>
     <configuration default="true" type="DartCommandLineRunConfigurationType" factoryName="Dart Command Line Application">
       <option name="VMOptions" />
       <option name="arguments" />
@@ -220,15 +212,23 @@
       <option name="showConsoleOnStdOut" value="false" />
       <method />
     </configuration>
+    <configuration default="true" type="DartUnitRunConfigurationType" factoryName="DartUnit">
+      <option name="VMOptions" />
+      <option name="arguments" />
+      <option name="filePath" />
+      <option name="scope" value="ALL" />
+      <option name="testName" />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavaScriptTestRunnerKarma" factoryName="Karma" singleton="true" config-file="">
+      <envs />
+      <method />
+    </configuration>
     <configuration default="true" type="JSTestDriver:ConfigurationType" factoryName="JsTestDriver">
       <setting name="configLocationType" value="CONFIG_FILE" />
       <setting name="settingsFile" value="" />
       <setting name="serverType" value="INTERNAL" />
       <setting name="preferredDebugBrowser" value="CHROME" />
-      <method />
-    </configuration>
-    <configuration default="true" type="JavaScriptTestRunnerKarma" factoryName="Karma" singleton="true" config-file="">
-      <envs />
       <method />
     </configuration>
     <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug" singleton="true">
@@ -307,14 +307,14 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-1916" y="52" width="1910" height="1028" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.14928533" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Debug" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2598684" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25877193" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -640,7 +640,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/simplified_get.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="132" column="25" selection-start="5088" selection-end="5097" vertical-scroll-proportion="0.0" vertical-offset="1980" max-vertical-offset="4943">
+        <state line="64" column="0" selection-start="2761" selection-end="2761" vertical-scroll-proportion="0.9342949" vertical-offset="377" max-vertical-offset="3714">
           <folding />
         </state>
       </provider>
