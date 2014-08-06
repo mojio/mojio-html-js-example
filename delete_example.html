@@ -99,27 +99,11 @@ function showApps() {
         if (error) {
             $("#resultDiv").html("Get Apps error: " + error);
         } else {
-            var apps = [], i = 0;
-
-            if (result instanceof Array) {
-                var arrlength = result.length;
-                for (; i < arrlength; i++) {
-                    apps[i] = new App(result[i]);
-                }
-            } else if (result.Data instanceof Array) {
-                var arrlength = result.Data.length;
-                for (; i < arrlength; i++) {
-                    apps[i] = new App(result.Data[i]);
-                }
-            } else if ((result.Data != null)) {
-                apps[i] = new App(result.Data);
-            } else {
-                apps[i] = new App(result);
-            }
+            var apps = mojio_client.getResults(App, result);
 
             // display the app results
             $("#resultDiv").empty();
-            if (i > 0) {
+            if (apps.length > 0) {
                 $("#resultDiv").html("<p>App list - select one and press 'Delete' to delete an App.</p>");
                 showItems(apps, "resultDiv", "app");
                 $("#resultDiv").append('<hr>');

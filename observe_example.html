@@ -101,27 +101,11 @@ function showApps() {
         if (error) {
             $("#resultDiv").html("Get Apps error: " + error);
         } else {
-            var apps = [], i = 0;
-
-            if (result instanceof Array) {
-                var arrlength = result.length;
-                for (; i < arrlength; i++) {
-                    apps[i] = new App(result[i]);
-                }
-            } else if (result.Data instanceof Array) {
-                var arrlength = result.Data.length;
-                for (; i < arrlength; i++) {
-                    apps[i] = new App(result.Data[i]);
-                }
-            } else if ((result.Data != null)) {
-                apps[i] = new App(result.Data);
-            } else {
-                apps[i] = new App(result);
-            }
+            var apps = mojio_client.getResults(App, result);
 
             // display the app results
             $("#resultDiv").empty();
-            if (i > 0) {
+            if (apps.length > 0) {
                 $("#resultDiv").html("<p>App list - select one and press 'Listen' for updates.</p>");
                 showItems(apps, "resultDiv", "app");
                 $("#resultDiv").append('<hr>');
@@ -137,27 +121,11 @@ function showVehicles() {
         if (error) {
             $("#resultDiv2").html("Get Vehicle error: " + error);
         } else {
-            var vehicles = [], i = 0;
-
-            if (result instanceof Array) {
-                var arrlength = result.length;
-                for (; i < arrlength; i++) {
-                    vehicles[i] = new Vehicle(result[i]);
-                }
-            } else if (result.Data instanceof Array) {
-                var arrlength = result.Data.length;
-                for (; i < arrlength; i++) {
-                    vehicles[i] = new Vehicle(result.Data[i]);
-                }
-            } else if ((result.Data != null)) {
-                vehicles[i] = new Vehicle(result.Data);
-            } else {
-                vehicles[i] = new Vehicle(result);
-            }
+            var vehicles = mojio_client.getResults(Vehicle, result);
 
             // display the vehicles in a listbox
             $("#resultDiv2").empty();
-            if (i > 0) {
+            if (vehicles.length > 0) {
                 $("#resultDiv2").html("<p>Vehicle list - select one and press 'listen' for updates.</p>");
                 showItems(vehicles, "resultDiv2", "vehicle");
             } else {
@@ -181,28 +149,27 @@ function showItems(items, div, entityType) {
             var strId = "#"+listenDiv.id;
             var observedEntity;
             var changedCallback = function (entity) {
-                if (entityType === "app") {
-                    $(strId).append('<p>Observed App change:</p>');
-                    $(strId).append(entity.Name + '<br>' + entity.Description + '<br>');
-                    unobserve(observedEntity, strId);
-                } else if (entityType === "vehicle") {
-                    //console.log(entity);
-                    var vehicle, location;
-                    vehicle = new Vehicle(entity);
-                    location = vehicle.LastLocation;
-                    
-                    $(strId).append('<p>Received vehicle event for ' + vehicle.Name + '</p>');
-                    
-                    if (vehicle.IgnitionOn)
-                        $(strId).append('Vehicle Ignition is: On<br>');
-                    else
-                        $(strId).append('Vehicle Ignition is: Off<br>');
-                    
-                    $(strId).append('Last location of ' + vehicle.Name + ': Lat - ' + location.Lat + ', Lng - ' + location.Lng + '<br>');
-                    
-                } else {
-                    console.log(entity);
-                    unobserve(observedEntity, strId);
+                switch (entityType) {
+                    case "app":
+                        $(strId).append('<p>Observed App change:</p>');
+                        $(strId).append(entity.Name + '<br>' + entity.Description + '<br>');
+                        unobserve(observedEntity, strId);
+                        break;
+                    case "vehicle":
+                        var vehicle = new Vehicle(entity);
+                        var loc = vehicle.LastLocation;
+                        $(strId).append('<p>Received vehicle event for ' + vehicle.Name + '</p>');
+                        
+                        if (vehicle.IgnitionOn)
+                            $(strId).append('Vehicle Ignition is: On<br>');
+                        else
+                            $(strId).append('Vehicle Ignition is: Off<br>');
+                        
+                        $(strId).append('Last location of ' + vehicle.Name + ': Lat - ' + loc.Lat + ', Lng - ' + loc.Lng + '<br>');
+                        break;
+                    default:
+                        console.log(entity);
+                        unobserve(observedEntity, strId);
                 }
             };
             
@@ -285,32 +252,16 @@ function logObservers() {
             console.log("Get Observer error: ");
             console.log(error);
         } else {
-            var observers = [], i = 0;
-
-            if (result instanceof Array) {
-                var arrlength = result.length;
-                for (; i < arrlength; i++) {
-                    observers[i] = new Observer(result[i]);
+            var observers = mojio_client.getResults(Observer, result);
+            var i = observers.length;
+            if (i > 0) {
+                for (var j = 0; j < i; j++) {
+                    console.log("Observer [" + j + "]: ");
+                    console.log(observers[j]);
                 }
-            } else if (result.Data instanceof Array) {
-                var arrlength = result.Data.length;
-                for (; i < arrlength; i++) {
-                    observers[i] = new Observer(result.Data[i]);
-                }
-            } else if ((result.Data != null)) {
-                observers[i] = new Observer(result.Data);
             } else {
-                observers[i] = new Observer(result);
+                console.log("No Observer found.");
             }
-        }
-        
-        if (i > 0) {
-            for (var j = 0; j < i; j++) {
-                console.log("Observer [" + j + "]: ");
-                console.log(observers[j]);
-            }
-        } else {
-            console.log("No Observer found.");
         }
     });
 }

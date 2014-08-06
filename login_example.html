@@ -91,12 +91,7 @@ function login() {
                     if (error) {
                         $("#loginResult").append('<p>Getting user information error: ' + error + '</p>');
                     } else {
-                        var user;
-                        if (result instanceof Array) {
-                            user = new User(result[0]);
-                        } else {
-                            user = new User(result);
-                        }
+                        var user = mojio_client.getResults(User, result)[0];
 
                         $("#loginResult").append('<p>Welcome ' + user.UserName + '</p>');
                     }
@@ -138,12 +133,7 @@ function loginApp() {
                     if (error) {
                         $("#loginAppResult").append('<p>Getting user information error: ' + error + '</p>');
                     } else {
-                        var user;
-                        if (result instanceof Array) {
-                            user = new User(result[0]);
-                        } else {
-                            user = new User(result);
-                        }
+                        var user = mojio_client.getResults(User, result)[0];
 
                         $("#loginAppResult").append('<p>Welcome ' + user.UserName + '</p>');
                     }

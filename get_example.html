@@ -97,33 +97,11 @@ function showTrips() {
         if (error) {
             $("#resultDiv").html("Get Trips error: " + error);
         } else {
-            var trips = [], i = 0;
-            
-            if (result instanceof Array) {
-                var arrlength = result.length;
-                for (; i < arrlength; i++) {
-                    trips[i] = new Trip(result[i]);
-                }
-            } else if (result.Data instanceof Array) {
-                var arrlength = result.Data.length;
-                for (; i < arrlength; i++) {
-                    trips[i] = new Trip(result.Data[i]);
-                }
-            } else if ((result.Data != null)) {
-                trips[i] = new Trip(result.Data);
-            } else {
-                trips[i] = new Trip(result);
-            }
+            var trips = mojio_client.getResults(Trip, result);
             console.log(trips);
-            // display the trip results
-            $("#resultDiv").empty();
-            if (i > 0) {
-                for (var j = 0; j < i; j++) {
-                    showItems(trips[j], ["StartTime", "EndTime", "StartAddress", "EndAddress", "VehicleId", "_id"], ["StartAddress", "EndAddress"]);
-                }
-            } else {
-                $("#resultDiv").html("<p>No trip found</p>");
-            }
+            
+            // display the trips
+            displayResults(trips, ["StartTime", "EndTime", "StartAddress", "EndAddress", "VehicleId", "_id"], "No Trip found", ["StartAddress", "EndAddress"]);
         }
     });
 }
@@ -135,33 +113,11 @@ function showApps() {
         if (error) {
             $("#resultDiv").html("Get Apps error: " + error);
         } else {
-            var apps = [], i = 0;
-
-            if (result instanceof Array) {
-                var arrlength = result.length;
-                for (; i < arrlength; i++) {
-                    apps[i] = new App(result[i]);
-                }
-            } else if (result.Data instanceof Array) {
-                var arrlength = result.Data.length;
-                for (; i < arrlength; i++) {
-                    apps[i] = new App(result.Data[i]);
-                }
-            } else if ((result.Data != null)) {
-                apps[i] = new App(result.Data);
-            } else {
-                apps[i] = new App(result);
-            }
+            var apps = mojio_client.getResults(App, result);
             console.log(apps);
-            // display the app results
-            $("#resultDiv").empty();
-            if (i > 0) {
-                for (var j = 0; j < i; j++) {
-                    showItems(apps[j], ["Name", "Description", "_id"]);
-                }
-            } else {
-                $("#resultDiv").html("<p>No app found</p>");
-            }
+            
+            // display the apps
+            displayResults(apps, ["Name", "Description", "_id"], "No App found");
         }
     });
 }
@@ -172,33 +128,11 @@ function showVehicles() {
         if (error) {
             $("#resultDiv").html("Get Vehicle error: " + error);
         } else {
-            var vehicles = [], i = 0;
-
-            if (result instanceof Array) {
-                var arrlength = result.length;
-                for (; i < arrlength; i++) {
-                    vehicles[i] = new Vehicle(result[i]);
-                }
-            } else if (result.Data instanceof Array) {
-                var arrlength = result.Data.length;
-                for (; i < arrlength; i++) {
-                    vehicles[i] = new Vehicle(result.Data[i]);
-                }
-            } else if ((result.Data != null)) {
-                vehicles[i] = new Vehicle(result.Data);
-            } else {
-                vehicles[i] = new Vehicle(result);
-            }
+            var vehicles = mojio_client.getResults(Vehicle, result);
             console.log(vehicles);
+            
             // display the vehicles
-            $("#resultDiv").empty();
-            if (i > 0) {
-                for (var j = 0; j < i; j++) {
-                    showItems(vehicles[j], ["Name", "OwnerId", "_id"]);
-                }
-            } else {
-                $("#resultDiv").html("<p>No vehicle found</p>");
-            }
+            displayResults(vehicles, ["Name", "OwnerId", "_id"], "No Vehicle found");
         }
     });
 }
@@ -209,48 +143,37 @@ function showMojio() {
         if (error) {
             $("#resultDiv").html("Get Mojio error: " + error);
         } else {
-            var mojios = [], i = 0;
-
-            if (result instanceof Array) {
-                var arrlength = result.length;
-                for (; i < arrlength; i++) {
-                    mojios[i] = new Mojio(result[i]);
-                }
-            } else if (result.Data instanceof Array) {
-                var arrlength = result.Data.length;
-                for (; i < arrlength; i++) {
-                    mojios[i] = new Mojio(result.Data[i]);
-                }
-            } else if ((result.Data != null)) {
-                mojios[i] = new Mojio(result.Data);
-            } else {
-                mojios[i] = new Mojio(result);
-            }
+            var mojios = mojio_client.getResults(Mojio, result);
             console.log(mojios);
+            
             // display the mojios
-            $("#resultDiv").empty();
-            if (i > 0) {
-                for (var j = 0; j < i; j++) {
-                    showItems(mojios[j], ["Name", "OwnerId", "_id"]);
-                }
-            } else {
-                $("#resultDiv").html("<p>No mojio found</p>");
-            }
+            displayResults(mojios, ["Name", "OwnerId", "_id"], "No Mojio found");
         }
     });
 }
 
-function showItems(items, fields, opts) {
-    $("#resultDiv").append('<dl>');
-    for (var key in items) {
-        if ($.inArray(key, fields) != -1) {
-            if ($.inArray(key, opts) != -1)
-                $("#resultDiv").append('<dt>' + key + '</dt><dd>' + items[key].Address1 + '</dd>');
-            else
-                $("#resultDiv").append('<dt>' + key + '</dt><dd>' + items[key] + '</dd>');
+function displayResults(items, displayList, notFoundMsg, opts) {
+    var length = 0;
+    if (items != null)
+        length = items.length;
+    
+    $("#resultDiv").empty();
+    if (length > 0) {
+        for (var i = 0; i < length; i++) {
+            $("#resultDiv").append('<dl>');
+            for (var key in items[i]) {
+                if ($.inArray(key, displayList) != -1) {
+                    if ($.inArray(key, opts) != -1)
+                        $("#resultDiv").append('<dt>' + key + '</dt><dd>' + items[i][key].Address1 + '</dd>');
+                    else
+                        $("#resultDiv").append('<dt>' + key + '</dt><dd>' + items[i][key] + '</dd>');
+                }
+            }
+            $("#resultDiv").append('</dl><br>');
         }
+    } else {
+        $("#resultDiv").append('<p>' + notFoundMsg + '</p>');
     }
-    $("#resultDiv").append('</dl><br>');
 }
 
 function createButton(name, func) {
