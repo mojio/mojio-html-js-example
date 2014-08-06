@@ -3,14 +3,8 @@
         <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
         <meta charset="utf-8" />
         <title>JavaScript Sample Runner</title>
-        
-        <script type="text/javascript" charset="utf-8" src="bower_components/jquery/dist/jquery.js"></script>
-        <script type="text/javascript" charset="utf-8" src="bower_components/mojio-js/dist/browser/MojioClient.js"></script>
-        
-        <script type="text/javascript">
-            var scripts = '<script type="text/javascript" charset="utf-8" src="bower_components/jquery/dist/jquery.js"><\/script>' +
-            '<script type="text/javascript" charset="utf-8" src="bower_components/mojio-js/dist/browser/MojioClient.js"><\/script>';
 
+        <script type="text/javascript">
             function init() {
                 var iframe = document.getElementById("runningArea");
                 var doc = iframe.contentDocument || iframe.contentWindow.document;
@@ -28,7 +22,7 @@
                 
                 var iframe = document.getElementById("runningArea");
                 var doc = iframe.contentDocument || iframe.contentWindow.document;
-                var html = '<head>' + scripts + '<\/head>' + '<body>' + obj + '<\/body>';
+                var html = '<body>' + obj + '<\/body>';
                 
                 doc.open();
                 doc.writeln(html);
@@ -139,6 +133,9 @@ function modifyLN() {
     });
 }</textarea>
                         <textarea cols="110" rows="20" id="userHtml" placeholder="html">
+<script type="text/javascript" charset="utf-8" src="bower_components/jquery/dist/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="bower_components/mojio-js/dist/browser/MojioClient.js"></script>
+
 <p> Logging in as user: anonymous@moj.io</p>
 <div id="loginResult"></div>
 <hr>
