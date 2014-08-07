@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5cc6d183-27bd-4423-a60e-3be05d1e6917" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/simplified_get.html" afterPath="$PROJECT_DIR$/simplified_get.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/simplified_modify.html" afterPath="$PROJECT_DIR$/simplified_modify.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="mojio-html-js-example.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -25,15 +26,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/index.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="63" column="2" selection-start="2782" selection-end="2782" vertical-scroll-proportion="0.0" vertical-offset="945" max-vertical-offset="1710">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="login_example.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/login_example.html">
           <provider selected="true" editor-type-id="text-editor">
@@ -55,7 +47,18 @@
       <file leaf-file-name="simplified_get.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/simplified_get.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="42" column="29" selection-start="2021" selection-end="2021" vertical-scroll-proportion="-12.6" vertical-offset="0" max-vertical-offset="3809">
+            <state line="140" column="30" selection-start="6585" selection-end="6630" vertical-scroll-proportion="-3.6" vertical-offset="1920" max-vertical-offset="3809">
+              <folding>
+                <marker date="1407366775000" expanded="true" signature="1921:2020" placeholder="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="simplified_Observe.html" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/simplified_Observe.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="4628">
               <folding />
             </state>
           </provider>
@@ -88,10 +91,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="simplified_modify.html" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="simplified_modify.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/simplified_modify.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="45" column="93" selection-start="2089" selection-end="2158" vertical-scroll-proportion="0.16853933" vertical-offset="570" max-vertical-offset="3308">
+            <state line="136" column="0" selection-start="4704" selection-end="4728" vertical-scroll-proportion="-13.28" vertical-offset="1376" max-vertical-offset="3267">
               <folding />
             </state>
           </provider>
@@ -140,6 +143,7 @@
         <option value="$PROJECT_DIR$/create_example.html" />
         <option value="$PROJECT_DIR$/get_example.html" />
         <option value="$PROJECT_DIR$/observe_example.html" />
+        <option value="$PROJECT_DIR$/simplified_modify.html" />
         <option value="$PROJECT_DIR$/simplified_get.html" />
       </list>
     </option>
@@ -219,7 +223,7 @@
     <property name="restartRequiresConfirmation" value="true" />
     <property name="FullScreen" value="false" />
   </component>
-  <component name="RunManager" selected="JavaScript Debug.simple get example">
+  <component name="RunManager" selected="JavaScript Debug.observer example">
     <configuration default="false" name="login_example.html" type="JavascriptDebugType" factoryName="JavaScript Debug" singleton="true" temporary="true" uri="http://localhost:63342/mojio-html-js-example/login_example.html">
       <RunnerSettings RunnerId="JavascriptDebugRunner" />
       <ConfigurationWrapper RunnerId="JavascriptDebugRunner" />
@@ -291,14 +295,26 @@
       <ConfigurationWrapper RunnerId="JavascriptDebugRunner" />
       <method />
     </configuration>
-    <list size="7">
+    <configuration default="false" name="observer example" type="JavascriptDebugType" factoryName="JavaScript Debug" uri="http://localhost:63342/mojio-html-js-example/simplified_Observe.html">
+      <RunnerSettings RunnerId="JavascriptDebugRunner" />
+      <ConfigurationWrapper RunnerId="JavascriptDebugRunner" />
+      <method />
+    </configuration>
+    <configuration default="false" name="modify example" type="JavascriptDebugType" factoryName="JavaScript Debug" uri="http://localhost:63342/mojio-html-js-example/simplified_modify.html">
+      <RunnerSettings RunnerId="JavascriptDebugRunner" />
+      <ConfigurationWrapper RunnerId="JavascriptDebugRunner" />
+      <method />
+    </configuration>
+    <list size="9">
       <item index="0" class="java.lang.String" itemvalue="JavaScript Debug.create_example.html" />
       <item index="1" class="java.lang.String" itemvalue="JavaScript Debug.get_example.html" />
       <item index="2" class="java.lang.String" itemvalue="JavaScript Debug.delete_example.html" />
       <item index="3" class="java.lang.String" itemvalue="JavaScript Debug.index.html" />
       <item index="4" class="java.lang.String" itemvalue="JavaScript Debug.simple get example" />
-      <item index="5" class="java.lang.String" itemvalue="JavaScript Debug.login_example.html" />
-      <item index="6" class="java.lang.String" itemvalue="JavaScript Debug.test.html" />
+      <item index="5" class="java.lang.String" itemvalue="JavaScript Debug.observer example" />
+      <item index="6" class="java.lang.String" itemvalue="JavaScript Debug.modify example" />
+      <item index="7" class="java.lang.String" itemvalue="JavaScript Debug.login_example.html" />
+      <item index="8" class="java.lang.String" itemvalue="JavaScript Debug.test.html" />
     </list>
     <recent_temporary>
       <list size="2">
@@ -335,14 +351,14 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-1916" y="52" width="1910" height="1028" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.14928533" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25824177" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.14928533" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Debug" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25824177" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -373,13 +389,6 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/get_example.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="32" column="27" selection-start="1751" selection-end="1751" vertical-scroll-proportion="0.0" vertical-offset="480" max-vertical-offset="4485">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state line="63" column="4" selection-start="2759" selection-end="2759" vertical-scroll-proportion="0.0" vertical-offset="945" max-vertical-offset="1830">
@@ -665,16 +674,25 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/simplified_get.html">
+    <entry file="file://$PROJECT_DIR$/simplified_modify.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="42" column="29" selection-start="2021" selection-end="2021" vertical-scroll-proportion="-12.6" vertical-offset="0" max-vertical-offset="3809">
+        <state line="136" column="0" selection-start="4704" selection-end="4728" vertical-scroll-proportion="-13.28" vertical-offset="1376" max-vertical-offset="3267">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/simplified_modify.html">
+    <entry file="file://$PROJECT_DIR$/simplified_get.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="45" column="93" selection-start="2089" selection-end="2158" vertical-scroll-proportion="0.16853933" vertical-offset="570" max-vertical-offset="3308">
+        <state line="140" column="30" selection-start="6585" selection-end="6630" vertical-scroll-proportion="-3.6" vertical-offset="1920" max-vertical-offset="3809">
+          <folding>
+            <marker date="1407366775000" expanded="true" signature="1921:2020" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/simplified_Observe.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="4652">
           <folding />
         </state>
       </provider>
